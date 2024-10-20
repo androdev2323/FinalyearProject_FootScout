@@ -25,19 +25,41 @@ class Reccomendscreen_Viewmodel @Inject constructor(private val playerrepository
   when(event){
       is event_recommendplayer.onquerychange -> {
           viewModelScope.launch {
-              playerrepository.searchplayers(event.query).collect() {
-                  when (it) {
-                      is NetworkResult.Success -> {
-                          _Screenstate.value = _Screenstate.value.copy(searchlist =it.data)
-                      }
+              _Screenstate.value=_Screenstate.value.copy(query = event.query)
+              val currquery=event.query.text
+              if(currquery.isNotBlank()) {
+                search(event.query.text)
 
-                      is NetworkResult.Error ->
-                      NetworkResult.loading ->
-                  }
+
+              }
+              else{
+                  _Screenstate.value=_Screenstate.value.copy(empty = true)
               }
 
           }
       }
   }
+    }
+
+    fun search(query:String) {
+        viewModelScope.launch {
+            playerrepository.searchplayers(query).collect() {
+
+                when (it) {
+                    is NetworkResult.Success -> {
+                        if (!it.data.isEmpty()) {
+                            _Screenstate.value = _Screenstate.value.copy(searchlist = it.data)
+                        } else {
+                            _Screenstate.value = _Screenstate.value.copy(empty = true)
+                        }
+                    }
+
+                    is NetworkResult.Error -> _Screenstate.value =
+                        _Screenstate.value.copy(error = true)
+
+                    is NetworkResult.loading -> {}
+                }
+            }
+        }
     }
 }

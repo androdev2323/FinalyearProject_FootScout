@@ -59,7 +59,7 @@ fun searchBar(
             )
         },
         trailingIcon = {
-            if (query.isNotEmpty()) {
+            if (query.text.isNotBlank()) {
                 IconButton(onClick = onClearClicked) {
                     Icon(
                         imageVector = Icons.Default.Clear,
@@ -77,5 +77,5 @@ fun searchBar(
 @Preview
 @Composable
 private fun searchbar() {
-searchBar(modifier = Modifier, query ="" , onClearClicked = {}, onValueChange = {} )
+searchBar(modifier = Modifier, query =TextFieldValue("") , onClearClicked = {}, onValueChange = {} )
 }

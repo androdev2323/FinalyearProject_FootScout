@@ -30,10 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.minip_footscout.data.local.entity.Player
 
 
 @Composable
-fun PlayerListCard() {
+fun PlayerListCard( player:Player) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -68,14 +69,14 @@ fun PlayerListCard() {
             // Player Information
             Column {
                 Text(
-                    text = "Lionel Messi",
+                    text = player.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF3F51B5)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Forward",
+                    text = player.position,
                     fontSize = 16.sp,
                     color = androidx.compose.ui.graphics.Color.Gray
                 )
@@ -84,9 +85,9 @@ fun PlayerListCard() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    InfoChip(label = "Age", value = "34")
-                    InfoChip(label = "League", value = "Ligue 1")
-                    InfoChip(label = "Nation", value = "ARG")
+                    InfoChip(label = "Age", value = player.age.toString())
+                    InfoChip(label = "League", value = player.league)
+                    InfoChip(label = "Nation", value = player.nation)
                 }
             }
         }
@@ -112,5 +113,5 @@ fun InfoChip(label: String, value: String) {
 @Preview
 @Composable
 fun PlayerCardPreview() {
-    PlayerListCard()
+    //  PlayerListCard()
 }

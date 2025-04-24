@@ -1,4 +1,4 @@
-package com.example.minip_footscout.playerrecommenderscreen.components
+package com.example.minip_footscout.presentation.playerrecommenderscreen.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

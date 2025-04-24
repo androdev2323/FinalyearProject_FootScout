@@ -1,4 +1,4 @@
-package com.example.minip_footscout.playerrecommenderscreen
+package com.example.minip_footscout.presentation.playerrecommenderscreen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -21,7 +21,7 @@ class Reccomendscreen_Viewmodel @Inject constructor(private val playerrepository
         }
     }
 
-    fun action(event:event_recommendplayer){
+    fun action(event: event_recommendplayer){
   when(event){
       is event_recommendplayer.onquerychange -> {
           viewModelScope.launch {

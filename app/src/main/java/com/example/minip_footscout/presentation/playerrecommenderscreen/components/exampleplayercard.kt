@@ -1,4 +1,4 @@
-package com.example.minip_footscout.playerrecommenderscreen.components
+package com.example.minip_footscout.presentation.playerrecommenderscreen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,19 +39,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.minip_footscout.R
+import com.example.minip_footscout.data.local.entity.Sampleplayer
 
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun previewplayercard() {
-    ImprovedPlayerCard()
-}
-@Composable
-fun playercard() {
+fun playercard(player:Sampleplayer) {
     Card(onClick = { }, shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
         Column(modifier = Modifier) {
             Image(
-                painter = painterResource(id = R.drawable.sample_image),
+                painter = painterResource(id = player.image),
                 contentScale = ContentScale.FillWidth,
                 contentDescription = "",
                 modifier = Modifier
@@ -91,7 +87,7 @@ fun playercard() {
                     ) {
                         Text(text = "Nationality", fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
-                        Text(modifier = Modifier, text = "Brazil",fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                        Text(modifier = Modifier, text = player.nation,fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     }
                     Row(
                         modifier = Modifier
@@ -100,14 +96,14 @@ fun playercard() {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = "Age", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        Text(text = "33")
+                        Text(text = player.age.toString())
                     }
                     Row(
                         Modifier
                             .fillMaxWidth()
                             .padding(end = 20.dp, top = 20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                         Text(text = "Year")
-                        Text(text = "1992")
+                        Text(text = player.birth)
                     }
                 }
                 VerticalDivider(
@@ -124,7 +120,7 @@ fun playercard() {
                     ) {
                         Text(text = "Team")
 
-                        Text(modifier = Modifier, text = "Paris Saint")
+                        Text(modifier = Modifier, text = player.league.toString())
                     }
                     Row(
                         modifier = Modifier
@@ -133,14 +129,14 @@ fun playercard() {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = "Position")
-                        Text(text = "Fw")
+                        Text(text = player.position)
                     }
                     Row(
                         Modifier
                             .fillMaxWidth()
                             .padding(end = 20.dp, top = 20.dp, start = 5.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                         Text(text = "Nationality", style = MaterialTheme.typography.bodySmall.copy(fontSize = 15.sp))
-                        Text(text = "Brazil", style = MaterialTheme.typography.bodySmall.copy(fontSize = 20.sp))
+                        Text(text = player.nation, style = MaterialTheme.typography.bodySmall.copy(fontSize = 20.sp))
                     }
                 }
             }
@@ -152,7 +148,7 @@ fun playercard() {
 
 
 @Composable
-fun ImprovedPlayerCard() {
+fun ImprovedPlayerCard(player: Sampleplayer) {
     Card(
         onClick = { },
         shape = RoundedCornerShape(20.dp),
@@ -160,14 +156,14 @@ fun ImprovedPlayerCard() {
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         modifier = Modifier.padding(16.dp)
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth().height(400.dp)) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(250.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.sample_image),
+                    painter = painterResource(id = player.image),
                     contentScale = ContentScale.Crop,
                     contentDescription = "Player Image",
                     modifier = Modifier.fillMaxSize()
@@ -178,9 +174,9 @@ fun ImprovedPlayerCard() {
                         .background(Color.Black.copy(alpha = 0.3f))
                 )
                 Text(
-                    text = "Neymar",
+                    text = player.name,
                     color = Color.White,
-                    fontSize = 32.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.BottomStart)
@@ -196,19 +192,19 @@ fun ImprovedPlayerCard() {
             ) {
                 PlayerInfoColumn(
                     listOf(
-                        "Nationality" to "Brazil",
-                        "Age" to "33",
-                        "Year" to "1992"
+                        "Nationality" to player.nation,
+                        "Age" to player.age.toString(),
+                        "Year" to player.birth
                     )
                 )
-                VerticalDivider(thickness = 1.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
-                PlayerInfoColumn(
+              /*  VerticalDivider(thickness = 1.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
+               PlayerInfoColumn(
                     listOf(
                         "Team" to "Paris Saint",
                         "Position" to "FW",
                         "League" to "Ligue 1"
                     )
-                )
+                ) */
             }
         }
     }

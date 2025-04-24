@@ -18,4 +18,6 @@ interface playerDao {
 
     @Query("SELECT COUNT(*) FROM players")
     suspend fun getPlayerCount(): Int
+    @Query("SELECT * FROM players WHERE id == :id")
+    suspend fun getPlayerById(id:Int):Player
 }

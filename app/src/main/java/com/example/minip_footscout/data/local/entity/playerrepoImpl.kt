@@ -159,4 +159,17 @@ class playerrepoImpl(private val dao: playerDao,@ApplicationContext val context:
             }
         }
     }
+
+    override suspend fun getplayerbyid(id: Int): Flow<NetworkResult<Player>> {
+        return flow {
+            emit(NetworkResult.loading)
+            try {
+                val player=dao.getPlayerById(id)
+                emit(NetworkResult.Success(player))
+            }
+            catch (e:Exception){
+                emit(NetworkResult.Error(e.message ?: "An error Ocurred"))
+            }
+        }
+    }
 }

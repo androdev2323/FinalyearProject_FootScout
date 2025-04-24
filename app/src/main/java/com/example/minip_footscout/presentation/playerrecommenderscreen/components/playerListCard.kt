@@ -1,4 +1,4 @@
-package com.example.minip_footscout.playerrecommenderscreen.components
+package com.example.minip_footscout.presentation.playerrecommenderscreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,13 +34,14 @@ import com.example.minip_footscout.data.local.entity.Player
 
 
 @Composable
-fun PlayerListCard( player:Player) {
+fun PlayerListCard( player:Player,onClick:() -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        onClick = {onClick()}
     ) {
         Row(
             modifier = Modifier

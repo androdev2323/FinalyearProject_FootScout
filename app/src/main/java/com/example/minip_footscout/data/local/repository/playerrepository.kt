@@ -9,5 +9,6 @@ interface playerrepository {
    suspend fun insertALL(player:List<Player>)
    suspend fun searchplayers(query:String): Flow<NetworkResult<List<Player>>>
    suspend fun importPlayersFromCsvIfNeeded()
+   suspend fun getplayerbyid(id:Int):Flow<NetworkResult<Player>>
 
 }

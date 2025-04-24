@@ -1,4 +1,4 @@
-package com.example.minip_footscout.playerrecommenderscreen
+package com.example.minip_footscout.presentation.playerrecommenderscreen
 
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.room.Query

@@ -2,9 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("com.google.devtools.ksp")
-    id("kotlin-kapt")
+
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.serial)
 }
+
 
 
     android {
@@ -66,6 +69,7 @@ plugins {
         implementation(libs.androidx.material3)
         implementation(libs.coil.compose)
         implementation(libs.androidx.ui.text.google.fonts)
+        
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
@@ -76,10 +80,14 @@ plugins {
 
         implementation(libs.androidx.room.runtime)
         implementation(libs.hilt.android)
-        kapt(libs.hilt.android.compiler)
+        ksp(libs.hilt.android.compiler)
         implementation(libs.androidx.hilt.navigation.compose)
         implementation(libs.hilt.android)
-        kapt(libs.androidx.room.compiler)
+        ksp(libs.androidx.room.compiler)
+        implementation(libs.retrofit)
+        implementation(libs.gsonConverter)
+        implementation(libs.serialization)
+        implementation(libs.navigationcompose)
 
 
         implementation(libs.androidx.room.ktx)
